@@ -1,3 +1,1 @@
 
-.env==>647214474363-tald3t4u32m20fgnaijibpvv9n08sgbr.apps.googleusercontent.com==>***
-.env==>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==>***
