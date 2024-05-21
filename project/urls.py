@@ -47,7 +47,10 @@ urlpatterns = [
     path('api/ProfileAdmin/', users_api_views.ProfileListAdmin.as_view()), #  profile data
     path('profiles/create/', users_api_views.ProfileCreateAdmin.as_view()), # profile SDD admin
     path('api/ProfileAdminedit/<int:id>/', users_api_views.ProfileListEditAdmin .as_view()), # profile data edit
-    path('job_providers/', users_api_views.JobProviderProfileView.as_view()),  # get only job provider details
+
+    path('api/job_providers/',  users_api_views.UserListAPIView.as_view(), name='user-list'), # get only job provider details
+
+
 
     path('listing/', include('Listing.urls')),
     path('djadmin/', include('djadmin.urls')),

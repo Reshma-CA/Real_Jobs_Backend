@@ -37,17 +37,28 @@ class UserDetailsView(serializers.ModelSerializer):
 
 # profile
 
+# class ProfileAdmin(serializers.ModelSerializer):
+#     job_provider_username = serializers.SerializerMethodField()
+#
+#     def get_job_provider_username(self,obj):
+#         return obj.job_provider.username
+#
+#     class Meta:
+#         model = Profile
+#         fields = '__all__'
+
 class ProfileAdmin(serializers.ModelSerializer):
     job_provider_username = serializers.SerializerMethodField()
+    job_provider = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), required=False)
 
-    def get_job_provider_username(self,obj):
+    def get_job_provider_username(self, obj):
         return obj.job_provider.username
 
     class Meta:
         model = Profile
         fields = '__all__'
 
-# profile creater
+# profile ADD
 
 class ProfileCreateSerializer(serializers.ModelSerializer):
     job_provider = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
@@ -56,8 +67,12 @@ class ProfileCreateSerializer(serializers.ModelSerializer):
         model = Profile
         fields = ['job_provider', 'agency_name', 'phone_number', 'bio', 'profile_picture']
 
+
   # get job provider only
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['username']  # Include any fields you need
+
+
+############################################################################
