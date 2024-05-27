@@ -42,14 +42,24 @@ urlpatterns = [
     # Admin
 
     path('api/userdetails/', users_api_views.UserDetalsViews.as_view()), # user data
-    path('api/userAdminedit/<int:id>/', users_api_views.UserListEditAdmin .as_view()), # user data edit
+    path('api/userAdminedit/<int:id>/', users_api_views.UserListEditAdmin .as_view()), # user data edit,delete
 
     path('api/ProfileAdmin/', users_api_views.ProfileListAdmin.as_view()), #  profile data
-    path('profiles/create/', users_api_views.ProfileCreateAdmin.as_view()), # profile SDD admin
-    path('api/ProfileAdminedit/<int:id>/', users_api_views.ProfileListEditAdmin .as_view()), # profile data edit
+    path('profiles/create/', users_api_views.ProfileCreateAdmin.as_view()), # profile EDD admin
+    path('api/ProfileAdminedit/<int:id>/', users_api_views.ProfileListEditAdmin .as_view()), # profile data edit,delete
 
+     # job create
     path('api/job_providers/',  users_api_views.UserListAPIView.as_view(), name='user-list'), # get only job provider details
+    path('api/job/create/', Listing_api_views.JobAdminCreate.as_view()), # job Adding
+    path('api/jobEdit/<int:id>/', Listing_api_views.JobListEditAdmin.as_view()), # job Edit,delete
 
+    # Job Click
+
+    path('api/track_click/<int:id>/', Listing_api_views.TrackJobClickView.as_view(), name='track_click'),
+    path('api/job_clicks_data/', Listing_api_views.JobClickDataView.as_view(), name='job_clicks_data'),
+
+    # Filters
+    path('api/job/filters/', Listing_api_views.JobListfilterView.as_view()),
 
 
     path('listing/', include('Listing.urls')),

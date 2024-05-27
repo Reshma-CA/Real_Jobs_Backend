@@ -1,6 +1,7 @@
 from random import choices
 from django.contrib.gis.db import models
 from django.utils import timezone
+
 from django.contrib.gis.geos import Point
 from django.contrib.auth import get_user_model
 # Register your models here.
@@ -31,7 +32,15 @@ class Job(models.Model):
     picture3 = models.ImageField(blank=True, null=True, upload_to='pictures/%Y/%m/%d/')
     picture4 = models.ImageField(blank=True, null=True, upload_to='pictures/%Y/%m/%d/')
     picture5 = models.ImageField(blank=True, null=True, upload_to='pictures/%Y/%m/%d/')
+    clicks = models.IntegerField(default=0)
 
 
     def __str__(self):
         return self.title
+
+class JobClick(models.Model):
+    job = models.ForeignKey(Job, on_delete=models.CASCADE)
+    clicked_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.job.title}'

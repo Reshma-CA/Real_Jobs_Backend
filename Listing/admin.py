@@ -8,3 +8,4 @@ from . models import *
 
 
 admin.site.register(Job)
+admin.site.register(JobClick)

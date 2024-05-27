@@ -1,6 +1,9 @@
 from rest_framework import serializers
 from Listing.models import Job
+from Listing.models import JobClick
 from users.models import Profile
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 class ListingSerializer(serializers.ModelSerializer):
     country = serializers.SerializerMethodField()
@@ -31,7 +34,43 @@ class ListingSerializer(serializers.ModelSerializer):
         model = Job
         fields = '__all__'
 
-# class ListIdSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model= Job
-#         fields = '__all__'
+# admin
+
+
+class JobCreateSerializer(serializers.ModelSerializer):
+    job_provider = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+
+    class Meta:
+        model = Job
+        fields = ['job_provider', 'title', 'description', 'area', 'borough', 'listing_type', 'price', 'latitude', 'longitude', 'picture1']
+
+
+# For Click
+
+
+class JobClickSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobClick
+        fields = ['job', 'clicked_at']
+
+# For Click fetching Data
+
+# class JobClickDataSerializer(serializers.Serializer):
+#     date = serializers.DateField()
+#     clicks = serializers.IntegerField()
+
+class JobClickDataSerializer(serializers.ModelSerializer):
+    date = serializers.DateField()
+    job__title = serializers.CharField()
+    clicks = serializers.IntegerField()
+
+    class Meta:
+        model = JobClick
+        fields = ['date', 'job__title', 'clicks']
+
+  # Filters
+
+class JobFilterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Job
+        fields = '__all__'
