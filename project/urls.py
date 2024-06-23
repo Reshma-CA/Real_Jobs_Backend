@@ -62,6 +62,8 @@ urlpatterns = [
     path('api/job/filters/', Listing_api_views.JobListfilterView.as_view()),
 
 
+
+
     path('listing/', include('Listing.urls')),
     path('djadmin/', include('djadmin.urls')),
 

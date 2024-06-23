@@ -178,7 +178,7 @@ REST_FRAMEWORK = {
 
 DJOSER = {
 'USER_CREATE_PASSWORD_RETYPE':True,
-'SEND_ACTIVATION_EMAIL':False
+'SEND_ACTIVATION_EMAIL':False,
 }
 
 SIMPLE_JWT = {
@@ -186,3 +186,11 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=10),
 
 }
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'  # SMTP server address for Gmail
+# EMAIL_PORT = 587  # Port for TLS connection
+# EMAIL_USE_TLS = True  # Use TLS (Transport Layer Security) encryption
+# EMAIL_HOST_USER = 'reshmacaci@gmail.com'  # Your email address
+# EMAIL_HOST_PASSWORD = 'reshmacaci@gmail.com'  # Your email password
+# EMAIL_FROM = 'reshmacaci@gmail.com'  # Your email address (can be the same as EMAIL_HOST_USER)

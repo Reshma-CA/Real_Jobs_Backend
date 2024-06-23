@@ -118,32 +118,7 @@ class JobClickDataView(generics.ListAPIView):
     def get_queryset(self):
         return JobClick.objects.annotate(date=TruncDate('clicked_at')).values('date', 'job__title').annotate(clicks=Count('id')).order_by('date')
 
-# Filter view
-
-# class JobListfilterView(generics.ListAPIView):
-#     def get(self, request, format=None):
-#         queryset = Job.objects.all()
-#         filter_backends = (DjangoFilterBackend,)
-#         filterset_class = JobFilter
-#         serializer = JobFilterSerializer(queryset, many=True)
-#         return Response(serializer.data)
-
-# class JobListfilterView(generics.ListAPIView):
-#     serializer_class = JobFilterSerializer
-#     filter_backends = (DjangoFilterBackend,)
-#     filterset_class = JobFilter
-#
-#     def get_queryset(self):
-#         return Job.objects.all()
-
-    # def list(self, request, *args, **kwargs):
-    #     queryset = self.filter_queryset(self.get_queryset())
-    #
-    #     if not queryset.exists():
-    #         return Response({"detail": "No jobs found matching the filter criteria."}, status=status.HTTP_404_NOT_FOUND)
-    #
-    #     serializer = self.get_serializer(queryset, many=True)
-    #     return Response(serializer.data)
+# JOb Filter view
 
 class JobListfilterView(APIView):
     def post(self, request, format=None):

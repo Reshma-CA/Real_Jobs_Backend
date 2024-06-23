@@ -37,15 +37,6 @@ class UserDetailsView(serializers.ModelSerializer):
 
 # profile
 
-# class ProfileAdmin(serializers.ModelSerializer):
-#     job_provider_username = serializers.SerializerMethodField()
-#
-#     def get_job_provider_username(self,obj):
-#         return obj.job_provider.username
-#
-#     class Meta:
-#         model = Profile
-#         fields = '__all__'
 
 class ProfileAdmin(serializers.ModelSerializer):
     job_provider_username = serializers.SerializerMethodField()
@@ -76,3 +67,4 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 ############################################################################
+
